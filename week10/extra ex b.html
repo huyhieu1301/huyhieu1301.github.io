@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Circle Calculator</title>
+    <script language="javascript">
+        function calculate() {
+            var txtRadius = document.f.radius;
+            var result    = document.f.result;
+            var pi        = 3.14;
+
+            if (txtRadius.value == "" || isNaN(txtRadius.value)) {
+                result.value = "Radius must be a number";
+                txtRadius.focus();
+            } else {
+                var r         = parseFloat(txtRadius.value);
+                var perimeter = 2 * pi * r;
+                var area      = pi * r * r;
+                result.value  = "Perimeter = " + perimeter.toFixed(2) + " | Area = " + area.toFixed(2);
+            }
+        }
+    </script>
+</head>
+<body onload="calculate()">
+    <form name="f">
+        <table border="0" align="center">
+            <tr>
+                <td colspan="2" align="center"><h2>CIRCLE CALCULATOR</h2></td>
+            </tr>
+            <tr>
+                <td align="right">Radius: </td>
+                <td><input name="radius" value="0" onblur="calculate()" /></td>
+            </tr>
+            <tr>
+                <td align="right">Result: </td>
+                <td><input name="result" readonly="readonly" size="35" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
