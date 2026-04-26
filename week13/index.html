@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-wrapper">
+        <h3>Registration</h3>
+        <hr>
+ 
+        <form name="frmReg">
+            <table>
+                <tr>
+                    <td class="label-col">Username:</td>
+                    <td><input type="text" name="username" /></td>
+                </tr>
+                <tr>
+                    <td class="label-col">Password:</td>
+                    <td><input type="password" name="password" /></td>
+                </tr>
+                <tr>
+                    <td class="label-col">Re-type Password:</td>
+                    <td><input type="password" name="repassword" /></td>
+                </tr>
+            </table>
+ 
+            <hr>
+            <table>
+                <tr>
+                    <td class="label-col">Birthday:</td>
+                    <td>
+                        <select name="month">
+                            <option value="">[select one]</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        ,
+                        <input type="text" name="day" style="width:40px;" />
+                        ,
+                        <input type="text" name="year" style="width:60px;" />
+                        <span class="birthday-hint">(Month Day, Year)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-col">Images:</td>
+                    <td><input type="file" name="images" /></td>
+                </tr>
+            </table>
+ 
+            <hr>
+            <table>
+                <tr>
+                    <td class="label-col">First Name:</td>
+                    <td>
+                        <input type="text" name="firstname" style="width:120px;" />
+                        &nbsp;&nbsp;
+                        <span style="color:#2255aa;">Last Name:</span>
+                        <input type="text" name="lastname" style="width:120px;" />
+                    </td>
+                </tr>
+            </table>
+ 
+            <hr>
+            <table>
+                <tr>
+                    <td class="label-col" style="vertical-align:top; padding-top:6px;">
+                        Interests (optional):
+                    </td>
+                    <td>
+                        <table class="interests-table">
+                            <tr>
+                                <td><input type="checkbox" name="int" value="entertainment" /> Entertainment</td>
+                                <td><input type="checkbox" name="int" value="business" /> Business</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="int" value="homefamily" /> Home &amp; Family</td>
+                                <td><input type="checkbox" name="int" value="computers" /> Computers &amp; Technology</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="int" value="health" /> Health</td>
+                                <td><input type="checkbox" name="int" value="personalfinance" /> Personal Finance</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="int" value="music" /> Music</td>
+                                <td><input type="checkbox" name="int" value="smallbusiness" /> Small Business</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+ 
+            <hr>
+            <table>
+                <tr>
+                    <td colspan="2" align="center" style="padding-top:10px;">
+                        <input type="button" class="btn-register" value="REGISTER" onclick="register()" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+ 
+    <script language="javascript">
+        function register() {
+            var username    = document.frmReg.username.value;
+            var password    = document.frmReg.password.value;
+            var repassword  = document.frmReg.repassword.value;
+            var month       = document.frmReg.month.value;
+            var day         = document.frmReg.day.value;
+            var year        = document.frmReg.year.value;
+            var firstname   = document.frmReg.firstname.value;
+            var lastname    = document.frmReg.lastname.value;
+ 
+            if (username == "") {
+                alert("Please enter username!");
+                document.frmReg.username.focus();
+            } else if (password == "") {
+                alert("Please enter password!");
+                document.frmReg.password.focus();
+            } else if (repassword == "") {
+                alert("Please re-type password!");
+                document.frmReg.repassword.focus();
+            } else if (password != repassword) {
+                alert("Password does not match!");
+                document.frmReg.repassword.focus();
+            } else if (month == "") {
+                alert("Please select month!");
+            } else if (day == "" || isNaN(day)) {
+                alert("Please enter a valid day!");
+                document.frmReg.day.focus();
+            } else if (year == "" || isNaN(year)) {
+                alert("Please enter a valid year!");
+                document.frmReg.year.focus();
+            } else if (firstname == "") {
+                alert("Please enter first name!");
+                document.frmReg.firstname.focus();
+            } else if (lastname == "") {
+                alert("Please enter last name!");
+                document.frmReg.lastname.focus();
+            } else {
+                alert("Registration successful!\nWelcome, " + firstname + " " + lastname + "!");
+            }
+        }
+    </script>
+</body>
+</html>

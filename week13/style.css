@@ -1,0 +1,86 @@
+ body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+        }
+ 
+        .form-wrapper {
+            width: 520px;
+            margin: 30px auto;
+        }
+ 
+        h3 {
+            color: #cc0000;
+            font-size: 16px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+ 
+        hr {
+            border: none;
+            border-top: 1px solid #aaa;
+            margin: 8px 0;
+        }
+ 
+        table {
+            width: 100%;
+        }
+ 
+        td {
+            padding: 6px 4px;
+            vertical-align: middle;
+        }
+ 
+        .label-col {
+            width: 120px;
+            text-align: right;
+            padding-right: 10px;
+            color: #333;
+        }
+ 
+        input[type="text"],
+        input[type="password"] {
+            width: 220px;
+            padding: 3px 5px;
+            border: 1px solid #aaa;
+            font-size: 14px;
+        }
+ 
+        select {
+            padding: 3px;
+            border: 1px solid #aaa;
+            font-size: 14px;
+        }
+ 
+        .birthday-hint {
+            color: #555;
+            font-size: 13px;
+            margin-left: 5px;
+        }
+ 
+        .interests-label {
+            color: #333;
+            margin-bottom: 6px;
+        }
+ 
+        .interests-table td {
+            padding: 3px 8px;
+            color: #2255aa;
+        }
+ 
+        .btn-register {
+            background: radial-gradient(circle, #cc3300, #880000);
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+ 
+        .btn-register:hover {
+            background: radial-gradient(circle, #ff4400, #aa0000);
+        }
