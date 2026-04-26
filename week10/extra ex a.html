@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Rectangle Calculator</title>
+    <script language="javascript">
+        function calculate() {
+            var txtWidth  = document.f.width;
+            var txtHeight = document.f.height;
+            var result    = document.f.result;
+
+            if (txtWidth.value == "" || isNaN(txtWidth.value)) {
+                result.value = "Width must be a number";
+                txtWidth.focus();
+            } else if (txtHeight.value == "" || isNaN(txtHeight.value)) {
+                result.value = "Height must be a number";
+                txtHeight.focus();
+            } else {
+                var w = parseFloat(txtWidth.value);
+                var h = parseFloat(txtHeight.value);
+                var perimeter = 2 * (w + h);
+                var area      = w * h;
+                result.value  = "Perimeter = " + perimeter + " | Area = " + area;
+            }
+        }
+    </script>
+</head>
+<body onload="calculate()">
+    <form name="f">
+        <table border="0" align="center">
+            <tr>
+                <td colspan="2" align="center"><h2>RECTANGLE CALCULATOR</h2></td>
+            </tr>
+            <tr>
+                <td align="right">Width: </td>
+                <td><input name="width" value="0" onblur="calculate()" /></td>
+            </tr>
+            <tr>
+                <td align="right">Height: </td>
+                <td><input name="height" value="0" onblur="calculate()" /></td>
+            </tr>
+            <tr>
+                <td align="right">Result: </td>
+                <td><input name="result" readonly="readonly" size="30" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
