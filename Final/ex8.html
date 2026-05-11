@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 8 - Newsletter Subscription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+ 
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #333;
+        }
+ 
+        form {
+            display: grid;
+            grid-template-columns: 1fr;     
+            gap: 18px;                       
+        }
+ 
+        .form-group {
+            display: grid;
+            gap: 6px;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+        }
+        input[type="text"],
+        input[type="email"] {
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #8e44ad;
+            box-shadow: 0 0 0 2px rgba(142,68,173,0.2);
+        }
+ 
+        .radio-group, .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 8px;
+        }
+        .radio-group label, .checkbox-group label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+ 
+        .section-title {
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+ 
+        button {
+            padding: 12px;
+            background-color: #8e44ad;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover { background-color: #7d3c98; }
+ 
+        .error {
+            color: #e74c3c;
+            font-size: 12px;
+            display: none;
+        }
+        .success {
+            color: #27ae60;
+            text-align: center;
+            font-weight: bold;
+            padding: 12px;
+            background-color: #eafaf1;
+            border-radius: 6px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+ 
+<div class="form-container">
+    <h2>Newsletter Subscription</h2>
+ 
+    <form id="newsletterForm">
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter your full name">
+            <span class="error" id="nameError">Please enter your name</span>
+        </div>
+ 
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="example@email.com">
+            <span class="error" id="emailError">Email must contain @ and a domain</span>
+        </div>
+ 
+        <div class="form-group">
+            <span class="section-title">Subscription Type</span>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="subscription" value="monthly" checked>
+                    Monthly
+                </label>
+                <label>
+                    <input type="radio" name="subscription" value="yearly">
+                    Yearly
+                </label>
+            </div>
+        </div>
+ 
+        <div class="form-group">
+            <span class="section-title">Interests</span>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" class="interest" value="technology">
+                    Technology
+                </label>
+                <label>
+                    <input type="checkbox" class="interest" value="design">
+                    Design
+                </label>
+                <label>
+                    <input type="checkbox" class="interest" value="business">
+                    Business
+                </label>
+                <label>
+                    <input type="checkbox" class="interest" value="science">
+                    Science
+                </label>
+            </div>
+            <span class="error" id="interestError">Please select at least one interest</span>
+        </div>
+ 
+        <button type="submit">Subscribe</button>
+ 
+        <div class="success" id="successMsg">
+            Subscription successful! Welcome aboard!
+        </div>
+    </form>
+</div>
+ 
+<script>
+    document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        var isValid = true;
+        var name = document.getElementById("fullName").value.trim();
+        if (name === "") {
+            document.getElementById("nameError").style.display = "block";
+            isValid = false;
+        } else {
+            document.getElementById("nameError").style.display = "none";
+        }
+        var email = document.getElementById("email").value.trim();
+        var hasAt = email.includes("@");
+        var parts = email.split("@");
+        var hasDomain = parts.length === 2 && parts[1].includes(".");
+        if (!hasAt || !hasDomain) {
+            document.getElementById("emailError").style.display = "block";
+            isValid = false;
+        } else {
+            document.getElementById("emailError").style.display = "none";
+        }
+        var checkedInterests = document.querySelectorAll(".interest:checked");
+        if (checkedInterests.length === 0) {
+            document.getElementById("interestError").style.display = "block";
+            isValid = false;
+        } else {
+            document.getElementById("interestError").style.display = "none";
+        }
+        if (isValid) {
+            document.getElementById("successMsg").style.display = "block";
+        } else {
+            document.getElementById("successMsg").style.display = "none";
+        }
+    });
+</script>
+ 
+</body>
+</html>

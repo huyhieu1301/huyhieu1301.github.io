@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 4 - Restaurant Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #faf8f5;
+            padding: 40px 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+        .menu-container {
+            max-width: 600px;
+            margin: 0 auto;             
+        }
+        .menu-section {
+            margin-bottom: 24px;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .menu-section h2 {
+            color: #c0392b;
+            border-bottom: 2px solid #c0392b;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+        .menu-item {
+            display: flex;                  
+            justify-content: space-between; 
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .item-name {
+            color: #333;
+        }
+        .item-price {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .veg-tag {
+            background-color: #27ae60;
+            color: white;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-left: 8px;
+        }
+        .btn-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        button {
+            padding: 12px 24px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover { background-color: #219a52; }
+    </style>
+</head>
+<body>
+ 
+    <h1>Gourmet Kitchen</h1>
+    <p class="subtitle">Fresh &bull; Delicious &bull; Authentic</p>
+ 
+    <div class="btn-container">
+        <button onclick="filterMenu()">Filter: Show Vegetarian Only</button>
+    </div>
+ 
+    <div class="menu-container">
+        <div class="menu-section">
+            <h2>Appetizers &reg;</h2>
+            <div class="menu-item vegetarian">
+                <span class="item-name">Garden Salad <span class="veg-tag">Vegetarian</span></span>
+                <span class="item-price">&euro; 8.99</span>  
+            </div>
+            <div class="menu-item">
+                <span class="item-name">Chicken Wings</span>
+                <span class="item-price">&euro; 12.99</span>
+            </div>
+        </div>
+ 
+        <div class="menu-section">
+            <h2>Main Course &sect;</h2>
+ 
+            <div class="menu-item">
+                <span class="item-name">Grilled Salmon</span>
+                <span class="item-price">&euro; 24.99</span>
+            </div>
+            <div class="menu-item vegetarian">
+                <span class="item-name">Pasta Primavera <span class="veg-tag">Vegetarian</span></span>
+                <span class="item-price">&euro; 18.99</span>
+            </div>
+        </div>
+ 
+        <div class="menu-section">
+            <h2>Desserts</h2>
+ 
+            <div class="menu-item vegetarian">
+                <span class="item-name">Fruit Tart <span class="veg-tag">Vegetarian</span></span>
+                <span class="item-price">&euro; 9.99</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name">Tiramisu</span>
+                <span class="item-price">&euro; 11.99</span>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2>Drinks</h2>
+ 
+            <div class="menu-item vegetarian">
+                <span class="item-name">Fresh Orange Juice <span class="veg-tag">Vegetarian</span></span>
+                <span class="item-price">&euro; 5.99</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name">Espresso</span>
+                <span class="item-price">&euro; 3.99</span>
+            </div>
+        </div>
+    </div>
+ 
+<script>
+    
+    var showingAll = true;  
+    function filterMenu() {
+        var allItems = document.getElementsByClassName("menu-item");
+        var button = document.querySelector("button");
+ 
+        if (showingAll) {
+            for (var i = 0; i < allItems.length; i++) {
+                if (!allItems[i].classList.contains("vegetarian")) {
+                    allItems[i].style.display = "none";  
+                }
+            }
+            button.textContent = "Filter: Show All Items";
+            showingAll = false;
+        } else {
+            for (var i = 0; i < allItems.length; i++) {
+                allItems[i].style.display = "flex";  
+            }
+            button.textContent = "Filter: Show Vegetarian Only";
+            showingAll = true;
+        }
+    }
+</script>
+ 
+</body>
+</html>

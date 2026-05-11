@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;     
+            align-items: center;
+            padding: 40px 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+ 
+        table {
+            border-collapse: collapse;  
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;           
+        }
+        th, td {
+            border: 1px solid #ddd;     
+            padding: 12px 16px;         
+            text-align: left;
+        }
+        th {
+            background-color: #4a90d9;
+            color: white;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f0f7ff;  
+        }
+ 
+        button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c0392b;
+        }
+ 
+        .footer {
+            margin-top: 30px;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+ 
+    <h1>Computer Parts Price List</h1>
+ 
+<table id="priceTable">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Part Name</th>
+                <th>Brand</th>
+                <th>Price (USD)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>CPU &bull; Processor</td>         
+                <td>Intel&trade; Core i7</td>           
+                <td>$349.99</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>GPU &bull; Graphics Card</td>
+                <td>NVIDIA&trade; RTX 4070</td>
+                <td>$599.99</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>RAM &bull; Memory</td>
+                <td>Corsair&trade; Vengeance</td>
+                <td>$89.99</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>SSD &bull; Storage</td>
+                <td>Samsung&trade; 990 Pro</td>
+                <td>$129.99</td>
+            </tr>
+        </tbody>
+    </table>
+ 
+    <button onclick="changeColor()">Change Color</button>
+    <p class="footer">&copy; 2024 Computer Parts Store. All rights reserved.</p>
+ 
+<script>
+    function changeColor() {
+        // getElementById() lấy bảng theo id
+        var table = document.getElementById("priceTable");
+        table.style.color = "red";
+    }
+</script>
+ 
+</body>
+</html>

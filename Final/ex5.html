@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 5 - Tabbed Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+ 
+        .tab-container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .tab-nav {
+            display: flex;              
+            background-color: #2c3e50;
+        }
+        .tab-btn {
+            flex: 1;                  
+            padding: 14px 10px;
+            text-align: center;
+            color: #95a5a6;           
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 14px;
+            transition: all 0.3s;      
+        }
+        .tab-btn:hover {
+            color: white;
+            background-color: #34495e;
+        }
+        .tab-btn.active {
+            color: white;
+            background-color: #3498db;
+            font-weight: bold;
+        }
+ 
+        .tab-content {
+            display: none;              
+            padding: 30px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+ 
+<div class="tab-container">
+ 
+    <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('features', this)">
+            &rarr; Features &reg;
+        </button>
+        <button class="tab-btn" onclick="switchTab('pricing', this)">
+            Pricing &euro;
+        </button>
+        <button class="tab-btn" onclick="switchTab('reviews', this)">
+            Reviews
+        </button>
+        <button class="tab-btn" onclick="switchTab('support', this)">
+            Support
+        </button>
+    </div>
+ 
+    <div class="tab-content active" id="features">
+        <h3>Features &reg;</h3>
+        <p>Our product includes powerful features designed to boost your productivity.
+           Real-time collaboration, cloud storage, and advanced analytics are all built in.</p>
+    </div>
+ 
+    <div class="tab-content" id="pricing">
+        <h3>Pricing &euro;</h3>
+        <p>Basic Plan: &euro;9.99/month. Pro Plan: &euro;19.99/month. 
+           Enterprise: Contact us for custom pricing.</p>
+    </div>
+ 
+    <div class="tab-content" id="reviews">
+        <h3>Reviews</h3>
+        <p>"An excellent tool that transformed our workflow!" - User A</p>
+        <p>"Simple to use and very powerful." - User B</p>
+    </div>
+ 
+    <div class="tab-content" id="support">
+        <h3>Support</h3>
+        <p>Need help? Email us at support@example.com or call 1-800-HELP.
+           Our support team is available 24/7.</p>
+    </div>
+</div>
+ 
+<script>
+    function switchTab(tabId, clickedBtn) {
+        var allContents = document.querySelectorAll(".tab-content");
+        for (var i = 0; i < allContents.length; i++) {
+            allContents[i].classList.remove("active");  
+        }
+
+        var allBtns = document.querySelectorAll(".tab-btn");
+        for (var i = 0; i < allBtns.length; i++) {
+            allBtns[i].classList.remove("active");
+            allBtns[i].innerHTML = allBtns[i].innerHTML.replace("&rarr; ", "").replace("→ ", "");
+        }
+        document.getElementById(tabId).classList.add("active");  
+        clickedBtn.classList.add("active");
+        clickedBtn.innerHTML = "&rarr; " + clickedBtn.innerHTML;
+    }
+</script>
+ 
+</body>
+</html>

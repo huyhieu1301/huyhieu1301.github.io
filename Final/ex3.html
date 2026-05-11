@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 3 - Student Grade Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        h1 { color: #333; margin-bottom: 20px; }
+ 
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 16px;
+            text-align: left;
+        }
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+ 
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+ 
+        button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover { background-color: #219a52; }
+ 
+        #result {
+            margin-top: 16px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+ 
+        .footer {
+            margin-top: 30px;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+ 
+    <h1>Student Grade Calculator</h1>
+ 
+    <table>
+        <thead>
+            <tr>
+                <th>&sect; No.</th>     
+                <th>Subject</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Mathematics &reg;</td>   
+                <td class="grade">8.5</td>   
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Physics</td>
+                <td class="grade">7.0</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Chemistry</td>
+                <td class="grade">9.0</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>English</td>
+                <td class="grade">8.0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button onclick="calculateAverage()">Calculate Average</button>
+    <p id="result"></p>
+    <p class="footer">Pass requirement: Average &ge; 5.0</p>
+ 
+<script>
+    function calculateAverage() {
+        var gradeElements = document.querySelectorAll(".grade");
+        var total = 0;
+        var count = gradeElements.length;  
+        for (var i = 0; i < gradeElements.length; i++) {
+            total = total + parseFloat(gradeElements[i].textContent);
+        }
+ 
+        var average = total / count;
+        var result = document.getElementById("result");
+        result.textContent = "Average Grade: " + average.toFixed(2);
+ 
+        if (average >= 8) {
+            result.style.color = "#27ae60";  
+        } else if (average >= 5) {
+            result.style.color = "#f39c12";  
+        } else {
+            result.style.color = "#e74c3c";  
+        }
+    }
+</script>
+ 
+</body>
+</html>
