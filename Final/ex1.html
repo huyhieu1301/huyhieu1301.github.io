@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX1</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+        }
+        input {
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        input:focus {
+            outline: none;
+            border-color: #4a90d9;
+            box-shadow: 0 0 0 2px rgba(74, 144, 217, 0.2);
+        }
+        .strength-bar {
+            height: 6px;
+            border-radius: 3px;
+            background-color: #e0e0e0;
+            margin-top: 4px;
+        }
+        .strength-fill {
+            height: 100%;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s, background-color 0.3s;
+        }
+        .strength-text {
+            font-size: 12px;
+            margin-top: 4px;
+        }
+        .error {
+            color: #e74c3c;
+            font-size: 12px;
+            display: none;
+        }
+        button {
+            padding: 12px;
+            background-color: #4a90d9;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #357abd;
+        }
+        .success {
+            color: #27ae60;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2> User Registration</h2>
+        <form id="regForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="5-15 characters">
+                <span class="error" id="usernameError">Username must be 5-15 characters</span>
+
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Must contain numbers and letters">
+                <div class="strength-bar">
+                    <div class="strength-fill" id="strengthFill"></div>
+                </div>
+                <span class="strength-text" id="strengthText"></span>
+                <span class="error" id="passwordError">Password must contain both numbers and letters</span>
+            </div>
+            <div class="form-group">
+                <label for="profilePic">Profile Pircture</label>
+                <input type="file" id="profilePic" accept=".jpg, .jpeg, .png">
+                <span class="error" id="fileError">Only JPG or PNG files are allowed</span>
+            </div>
+            <button type="submit">Register</button>
+            <span class="success" id="successMsg">Registration Successful !</span>
+        </form>
+    </div>
+    <script>
+        document.getElementById("password").addEventListener("input", function(){
+            var password = this.value; 
+            var fill = document.getElementById("strengthFill");
+            var text = document.getElementById("strengthText");
+            var strength = 0;
+            if (password.length >= 6) strength++;
+            if (/[a-zA-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (password.length>=10) strength++;
+            if (password.length === 0) {
+                fill.style.width = "0%";
+                fill.style.backgroundColor = "";
+                text.textContent = "";
+            } else if (strength <= 1) {
+                fill.style.width = "33%";
+                fill.style.backgroundColor = "#e74c3c";
+                text.textContent = "Weak";
+                text.style.color = "#e74c3c";
+            } else if (strength <= 2) {
+                fill.style.width = "66%"
+                fill.style.backgroundColor = "#f39c12";
+                text.textContent = "Medium";
+                text.style.color = "#f39c12";
+            } else {
+                fill.style.width = "100%";
+                fill.style.backgroundColor = "#27ae60";
+                text.textContent = "Strong";
+                text.style.color = "#27ae60";
+            }
+        });
+        document.getElementById("regForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            var isValid = true;
+            var username = document.getElementById("username").value.trim();
+            var usernameError = document.getElementById("usernameError");
+            if (username.length <5 || username.length > 15) {
+                usernameError.style.display = "block";
+                isValid = false;
+            } else {
+                usernameError.style.display = "none"
+            }
+            var password = document.getElementById("password").value
+            var passwordError = document.getElementById("passwordError");
+            var hasLetters = /[a-zA-Z]/.test(password);
+            var hasNumbers = /[0-9]/.test(password);
+            if (!hasLetters || !hasNumbers) {
+                passwordError.style.display = "block";
+                isValid = false;
+            } else {
+                passwordError.style.display = "none";
+            }
+            var fileInput = document.getElementById("profilePic");
+        var fileError = document.getElementById("fileError");
+        if (fileInput.files.length > 0) {
+            // Lấy tên file, chuyển thành chữ thường, kiểm tra đuôi
+            var fileName = fileInput.files[0].name.toLowerCase();
+            if (!fileName.endsWith(".jpg") && !fileName.endsWith(".jpeg") && !fileName.endsWith(".png")) {
+                fileError.style.display = "block";
+                isValid = false;
+            } else {
+                fileError.style.display = "none";
+            }
+        } else {
+            fileError.style.display = "block";  // Chưa chọn file
+            isValid = false;
+        }
+        if (isValid) {
+            document.getElementById("successMsg").style.display = "block";
+        } else {
+            document.getElementById("successMsg").style.display = "none";
+        }
+        });
+    </script>
+</body>
+</html>
